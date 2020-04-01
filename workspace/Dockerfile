@@ -1275,3 +1275,5 @@ RUN apt-get clean && \
 
 # Set default work directory
 WORKDIR /var/www
+
+ENTRYPOINT echo $(ip route show default | awk '/default/ {print $3}') >> /var/www/host.txt

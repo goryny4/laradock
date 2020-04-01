@@ -887,6 +887,8 @@ RUN set -xe; php -v | head -n 1 | grep -q "PHP ${LARADOCK_PHP_VERSION}."
 #--------------------------------------------------------------------------
 #
 
+# COPY ./hosts /etc/hosts
+
 COPY ./laravel.ini /usr/local/etc/php/conf.d
 COPY ./xlaravel.pool.conf /usr/local/etc/php-fpm.d/
 
@@ -921,3 +923,11 @@ WORKDIR /var/www
 CMD ["php-fpm"]
 
 EXPOSE 9000
+
+RUN apt-get update
+RUN apt-get install nano
+
+ENTRYPOINT echo "172.19.0.1    frontend.local.gd" >> /etc/hosts            &&  echo "172.19.0.1    proxy.local.gd" >> /etc/hosts &&
+echo "172.19.0.1    programs-references.local.gd" >> /etc/hosts &&  echo "172.19.0.1    users.local.gd" >> /etc/hosts &&
+echo "172.19.0.1    orders.local.gd" >> /etc/hosts              &&  echo "172.19.0.1    reports.local.gd" >> /etc/hosts
+

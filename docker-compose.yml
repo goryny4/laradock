@@ -151,7 +151,7 @@ services:
         - "${WORKSPACE_SSH_PORT}:22"
       tty: true
       environment:
-        - PHP_IDE_CONFIG=${PHP_IDE_CONFIG}
+      #  - PHP_IDE_CONFIG=${PHP_IDE_CONFIG}
         - DOCKER_HOST=tcp://docker-in-docker:2375
       networks:
         - frontend
